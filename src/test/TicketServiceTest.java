@@ -22,7 +22,7 @@ public class TicketServiceTest {
     public void testGetTicketById(){
         setUp();
         try{ Ticket ticket = ticketService.getTicketById(7);
-            if (ticket!=null&&ticket.getreservationId()==7){
+            if (ticket!=null&&ticket.getReservationId()==7){
                 System.out.println("testGetTicketById: passed.");
             }   else {
                 System.out.println("testGetTicketById: failed.");
@@ -38,7 +38,7 @@ public class TicketServiceTest {
         setUp();
         try{ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate travelDate = LocalDate.parse("2024-11-28", formatter);
-            Ticket ticket = new Ticket(48,11,9,travelDate,"Booked");
+            Ticket ticket = new Ticket(48,11,travelDate,"Booked");
 //            System.out.println("Adding ticket: " + ticket);
 
             ticketService.addTicket(ticket);
@@ -65,7 +65,7 @@ public class TicketServiceTest {
         setUp();
         try{ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate travelDate = LocalDate.parse("2024-08-12", formatter);
-            Ticket ticket = new Ticket(7,1,8,travelDate,"Cancelled");
+            Ticket ticket = new Ticket(7,1,travelDate,"Cancelled");
             ticketService.updateTicket(ticket);
             if (ticket!=null&&ticket.getReservationDate().equals(travelDate)&&
             ticket.getStatus().equalsIgnoreCase("cancelled")){

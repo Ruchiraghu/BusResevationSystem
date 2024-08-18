@@ -12,4 +12,5 @@ public interface TicketDao {
     List<Ticket> getTicketByCustomerId(int customerId) throws BookingException;
     List<Ticket> getTicketByBusId(int busId) throws BookingException;
 
+    int getBookedSeatsForBus(int busId) throws BookingException;
 }

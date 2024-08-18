@@ -1,9 +1,9 @@
 package menu;
 
+import BusManagement.BusManager;
 import BusManagement.TicketManager;
 import model.Customer;
 import service.CustomerService;
-import service.TicketService;
 
 import java.util.Scanner;
 
@@ -11,16 +11,13 @@ public class CustomerMenu {
     private Scanner sc = new Scanner(System.in);
     private final CustomerService customerService;
     private final TicketManager ticketManager;
+    private final BusManager busManager;
 
-//    public CustomerMenu(CustomerService customerService, TicketService ticketService) {
-//        this.customerService = customerService;
-//        this.ticketManager = new TicketManager(sc, ticketService, null); // Pass null for BusService as it's not used in this context
-//    }
-
-    public CustomerMenu(Scanner sc, CustomerService customerService, TicketManager ticketManager) {
+    public CustomerMenu(Scanner sc, CustomerService customerService, TicketManager ticketManager, BusManager busManager) {
         this.sc = sc;
         this.customerService = customerService;
         this.ticketManager = ticketManager;
+        this.busManager = busManager;
     }
 
     public void handleCustomerMenu() {
@@ -46,12 +43,13 @@ public class CustomerMenu {
                     default -> System.out.println("Invalid choice. Please try again.");
                 }
             } else {
-                System.out.println("Customer Menu:");
-                System.out.println("1. Book Ticket");
-                System.out.println("2. View Bookings");
-                System.out.println("3. Cancel Booking");
-                System.out.println("4. Logout");
-                System.out.print("Enter your choice: ");
+                System.out.println("Customer Menu:\n" +
+                        "1. Book Ticket\n" +
+                        "2. View Bookings\n" +
+                        "3. Cancel Booking\n" +
+                        "4. View Buses by Location or Route\n" +
+                        "5. Logout\n" +
+                        "Enter your choice: ");
                 int choice = sc.nextInt();
                 sc.nextLine(); // Consume newline
 
@@ -59,7 +57,8 @@ public class CustomerMenu {
                     case 1 -> ticketManager.bookTicket();
                     case 2 -> ticketManager.viewBookings();
                     case 3 -> ticketManager.cancelBooking();
-                    case 4 -> {
+                    case 4-> busManager.displayAvailableBusesByLocationOrRoute();
+                    case 5 -> {
                         userLoggedIn = false;
                         System.out.println("Logged out successfully.");
                     }
@@ -91,6 +90,9 @@ public class CustomerMenu {
     }
 
     private void createAccount() {
+        System.out.println("Enter customer id: ");
+        int id = sc.nextInt();
+        sc.nextLine();
         System.out.print("Enter name: ");
         String name = sc.nextLine();
         System.out.print("Enter email: ");
@@ -101,7 +103,7 @@ public class CustomerMenu {
         String password = sc.nextLine();
 
         try {
-            Customer customer = new Customer(0, name, email, phoneNumber, password); // ID is 0 for new accounts
+            Customer customer = new Customer(id, name, email, phoneNumber, password); // ID is 0 for new accounts
             customerService.addCustomer(customer);
             System.out.println("Account created successfully.");
         } catch (Exception e) {

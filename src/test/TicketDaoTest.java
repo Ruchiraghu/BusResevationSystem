@@ -1,7 +1,6 @@
 package test;
 
 import daoImpl.TicketDaoImpl;
-import exception.BookingException;
 import model.Ticket;
 
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ public class TicketDaoTest {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate travelDate = LocalDate.parse("2024-08-12",formatter);
-            Ticket newTicket = new Ticket(7, 1, 8, travelDate, "Booked");
+            Ticket newTicket = new Ticket(7, 1, LocalDate.parse("2024-08-12", DateTimeFormatter.ofPattern("yyyy-MM-dd")), "Booked");
             ticketDao.addTicket(newTicket);
             Ticket addedTicket = ticketDao.getTicketById(7);
             if (addedTicket!=null&&addedTicket.getBusId()==1){
@@ -40,7 +39,7 @@ public class TicketDaoTest {
         setUp();
         try{ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate travelDate = LocalDate.parse("2024-09-23",formatter);
-            Ticket ticket = new Ticket(28,11,3,travelDate,"Booked");
+            Ticket ticket = new Ticket(28,11,  LocalDate.parse("2024-08-12", DateTimeFormatter.ofPattern("yyyy-MM-dd")),"Booked");
 //            Add ticket
             ticketDao.addTicket(ticket);
 
@@ -67,7 +66,7 @@ public class TicketDaoTest {
             LocalDate newTravelDate = LocalDate.parse("2024-09-30", formatter);
 
             //update ticket
-            Ticket updateTicket = new Ticket(14,12,8,newTravelDate,"Cancelled");
+            Ticket updateTicket = new Ticket(14,12, LocalDate.parse("2024-08-12", DateTimeFormatter.ofPattern("yyyy-MM-dd")),"Cancelled");
             ticketDao.updateTicket(updateTicket);
             Ticket fetchedTicket = ticketDao.getTicketById(14);
             if (fetchedTicket!=null&&
@@ -88,8 +87,8 @@ public void testDeleteTicket() {
     setUp();
     try {
         // Attempt to delete the ticket
-        ticketDao.deleteTicket(11);
-        Ticket  ticket=ticketDao.getTicketById(11);
+        ticketDao.deleteTicket(37);
+        Ticket  ticket=ticketDao.getTicketById(37);
         if (ticket==null){
             System.out.println("testDeleteTicket: passed.");
         }else {
@@ -107,8 +106,8 @@ public void testGetAllTickets() {
     try {
         List<Ticket> tickets = ticketDao.getAllTickets();
 
-        boolean foundTicket1 = tickets.stream().anyMatch(t -> t.getreservationId() == 8);
-        boolean foundTicket2 = tickets.stream().anyMatch(t -> t.getreservationId() == 9);
+        boolean foundTicket1 = tickets.stream().anyMatch(t -> t.getReservationId() == 8);
+        boolean foundTicket2 = tickets.stream().anyMatch(t -> t.getReservationId() == 9);
 
         if (foundTicket1 && foundTicket2) {
             System.out.println("testGetAllTickets: passed.");
@@ -127,7 +126,7 @@ public void testGetTicketByCustomerId() {
     try {
         List<Ticket> tickets = ticketDao.getTicketByCustomerId(9);
 
-        boolean found = tickets.stream().anyMatch(t -> t.getreservationId() == 34);
+        boolean found = tickets.stream().anyMatch(t -> t.getReservationId() == 34);
 
         if (found) {
             System.out.println("testGetTicketByCustomerId: passed.");
@@ -146,7 +145,7 @@ public void testGetTicketByBusId() {
     try {
         List<Ticket> tickets = ticketDao.getTicketByBusId(11);
 
-        boolean found = tickets.stream().anyMatch(t -> t.getreservationId() == 34);
+        boolean found = tickets.stream().anyMatch(t -> t.getReservationId() == 34);
 
         if (found) {
             System.out.println("testGetTicketByBusId: passed.");

@@ -1,6 +1,7 @@
 package service;
 
 import dao.BusDao;
+import dao.TicketDao;
 import daoImpl.BusDaoImpl;
 import exception.BookingException;
 import exception.BusNotFoundException;
@@ -8,9 +9,11 @@ import model.Bus;
 import test.BusServiceTest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BusService {
     private BusDao busDao;
+    private TicketDao ticketDao;
 
     public BusService(BusDao busDao)
     {
@@ -66,34 +69,77 @@ public class BusService {
         }
     }
 // 7   Available seats
-public List<Bus> getAvailableBuses(){
-        List<Bus> buses = null;
-        try {
-            buses = busDao.getAllBuses();
-        } catch (BusNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return buses.stream().filter(bus -> bus.getAvailableSeats()>0).toList();
+public List<Bus> getAvailableBuses() {
+    try {
+        // Get all buses from the data source
+        List<Bus> buses = busDao.getAllBuses();
+        // Filter buses with available seats
+        return buses.stream()
+                .filter(bus -> bus.getAvailableSeats() > 0)
+                .collect(Collectors.toList());
+    } catch (BusNotFoundException e) {
+        throw new RuntimeException("Error fetching available buses: " + e.getMessage());
     }
+}
 
-//   8 Book seats
-    public void bookSeats(int busId,int numberOfSeats) throws BusNotFoundException,BookingException{
-        Bus bus = busDao.getBusById(busId);
-        if (bus.getAvailableSeats()<numberOfSeats){
+    public void bookSeats(int busId, int numberOfSeats) throws BookingException, BusNotFoundException {
+        Bus bus = getById(busId);
+        int availableSeats = bus.getAvailableSeats();
+        System.out.println("Current available seats: " + availableSeats);
+
+        if (availableSeats >= numberOfSeats) {
+            bus.setAvailableSeats(availableSeats - numberOfSeats);
+            System.out.println("New available seats: " + bus.getAvailableSeats());
+            updateBus(bus);
+        } else {
             throw new BookingException("Not enough seats available.");
         }
-        bus.setAvailableSeats(bus.getAvailableSeats() - numberOfSeats);
-        busDao.updateBus(bus);
     }
 
-// 9   cancel booking
-    public void cancelBooking(int busId,int numberOfSeats) throws BookingException,BusNotFoundException{
-            Bus bus = busDao.getBusById(busId);
-            if (numberOfSeats<0){
-                throw new BookingException("No tickets left to cancel.");
-            }
-            bus.setAvailableSeats(bus.getAvailableSeats() + numberOfSeats);
-            busDao.updateBus(bus);
+
+    public void cancelBooking(int busId, int numberOfSeats) throws BookingException, BusNotFoundException {
+        Bus bus = getById(busId); // Fetch the bus using the ID
+        int availableSeats = bus.getAvailableSeats();
+
+        // Increase the number of available seats
+        bus.setAvailableSeats(availableSeats + numberOfSeats);
+        updateBus(bus); // Save the updated bus details
     }
+
+
+
+
+    public int calculateAvailableSeats(int busId) {
+        try {
+            // Get the total number of seats for the bus
+            int totalSeats = busDao.getTotalSeatsForBus(busId);
+
+            // Get the number of seats that have been booked
+            int bookedSeats = busDao.getBookedSeatsForBus(busId);
+
+            // Calculate the number of available seats
+            int availableSeats = totalSeats - bookedSeats;
+
+            // Return the number of available seats
+            return availableSeats;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; // Return 0 in case of an error
+        }
+    }
+    public List<Bus> getBusesByLocationOrRoute(String locationOrRoute) {
+        String lowerCaseQuery = locationOrRoute.toLowerCase();
+        try {
+            // Get all buses from the data source
+            List<Bus> buses = busDao.getAllBuses();
+            // Filter buses based on route or location
+            return buses.stream()
+                    .filter(bus -> bus.getRoute().toLowerCase().contains(lowerCaseQuery))
+                    .collect(Collectors.toList());
+        } catch (BusNotFoundException e) {
+            throw new RuntimeException("Error fetching buses by location or route: " + e.getMessage());
+        }
+    }
+
 
 }

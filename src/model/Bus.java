@@ -9,8 +9,6 @@ public class Bus {
     private String arrivalTime;
     private String route;
 
-  public Bus(){}
-
     public Bus(int busId, String busName, String busType,int availableSeats, String departureTime, String arrivalTime, String route) {
         this.busId = busId;
         this.busName = busName;
@@ -102,4 +100,5 @@ public class Bus {
                 ", route='" + route + '\'' +
                 '}';
     }
+
 }

@@ -1,5 +1,6 @@
 package main;
 
+import BusManagement.BusManager;
 import BusManagement.TicketManager;
 import exception.BusNotFoundException;
 import menu.AdminMenu;
@@ -20,11 +21,11 @@ public class Main {
         BusService busService = new BusService();
         CustomerService customerService = new CustomerService();
         TicketService ticketService = new TicketService();
-
+        BusManager busManager = new BusManager(sc,busService,adminService);
         // Create menu instances
         TicketManager ticketManager = new TicketManager(sc, ticketService, busService);
         AdminMenu adminMenu = new AdminMenu(sc, adminService, busService, customerService, ticketService);
-        CustomerMenu customerMenu = new CustomerMenu(sc, customerService, ticketManager);
+        CustomerMenu customerMenu = new CustomerMenu(sc, customerService, ticketManager, busManager);
 
         while (true) {
             System.out.println("Bus Ticket Reservation System:");

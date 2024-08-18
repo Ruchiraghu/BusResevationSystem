@@ -15,10 +15,11 @@ public class TicketManager {
     private final TicketService ticketService;
     private final BusService busService;
 
-    public TicketManager(Scanner sc, TicketService ticketService,BusService busService) {
+    public TicketManager(Scanner sc, TicketService ticketService, BusService busService) {
         this.sc = sc;
         this.ticketService = ticketService;
         this.busService = busService;
+
     }
 
     public void handleTicketManagement() {
@@ -41,13 +42,15 @@ public class TicketManager {
             default -> System.out.println("Invalid choice. Please try again!");
         }
     }
+
     private void displayAvailableBuses() {
         try {
             List<Bus> buses = busService.getAllBuses();
             if (buses.isEmpty()) {
                 System.out.println("No buses available.");
                 return;
-            } System.out.println("Available Buses:");
+            }
+            System.out.println("Available Buses:");
             String format = "%-5s %-20s %-15s %-15s %-20s %-20s %-30s%n";
 
             System.out.printf(format, "ID", "Name", "Type", "Seats", "Departure Time", "Arrival Time", "Route");
@@ -70,9 +73,9 @@ public class TicketManager {
             System.out.println("Error fetching available buses: " + e.getMessage());
         }
     }
+
     public void bookTicket() {
-        System.out.println("Enter reservation ID: ");
-        int reservationId = sc.nextInt();
+        System.out.println("-----Book Ticket-----");
         System.out.println("These are available buses: ");
         displayAvailableBuses();
         System.out.println("Enter bus ID: ");
@@ -83,15 +86,16 @@ public class TicketManager {
         System.out.println("Enter reservation date (YYYY-MM-DD): ");
         String reserveDate = sc.nextLine();
         LocalDate reservationDate = DateUtils.parseDate(reserveDate);
-        if (reservationDate==null){
+        if (reservationDate == null) {
             System.out.println("Invalid reservation date.");
-            return;}
+            return;
+        }
         System.out.println("Enter status: ");
         String status = sc.nextLine();
         try {
-            Ticket ticket = new Ticket(reservationId, busId, customerId, reservationDate, status);
+            Ticket ticket = new Ticket(busId, customerId, reservationDate, status);
             ticketService.addTicket(ticket);
-            System.out.println("Ticket booked successfully.");
+            System.out.println("Ticket booked successfully with Reservation ID:\n" + ticket.getReservationId() + "\nDate:\n" + ticket.getReservationDate());
         } catch (Exception e) {
             System.out.println("Error booking ticket: " + e.getMessage());
         }
@@ -103,8 +107,12 @@ public class TicketManager {
         sc.nextLine();
 
         try {
-            ticketService.deleteTicket(ticketId);
-            System.out.println("Ticket canceled successfully.");
+            boolean success = ticketService.deleteTicket(ticketId);
+            if (success) {
+                System.out.println("Ticket canceled successfully.");
+            } else {
+                System.out.println("Error: Booking ID not found.");
+            }
         } catch (BookingException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -151,32 +159,6 @@ public class TicketManager {
         }
     }
 
-//    public void bookTicket() {
-//        // Display available buses
-//        System.out.println("Available Buses:");
-//        busService.displayAvailableBuses(); // Assumes BusService has this method
-//
-//        System.out.print("Enter bus ID to book a ticket: ");
-//        int busId = sc.nextInt();
-//        sc.nextLine(); // Consume newline
-//
-//        System.out.print("Enter your customer ID: ");
-//        int customerId = sc.nextInt();
-//        sc.nextLine(); // Consume newline
-//
-//        System.out.print("Enter number of seats to book: ");
-//        int seats = sc.nextInt();
-//        sc.nextLine(); // Consume newline
-//
-//        try {
-//            Ticket ticket = ticketService.bookTicket(busId, customerId, seats);
-//            System.out.println("Booking successful!");
-//            System.out.println(ticket);
-//        } catch (Exception e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//    }
-
     public void viewBookings() {
         System.out.print("Enter your customer ID to view bookings: ");
         int customerId = sc.nextInt();
@@ -203,13 +185,12 @@ public class TicketManager {
         sc.nextLine(); // Consume newline
 
         try {
-            boolean success = ticketService.deleteTicket(bookingId);
-            if (success) {
-                System.out.println("Booking cancelled successfully.");
-            } else {
-                System.out.println("Error: Booking ID not found.");
-            }
-        } catch (Exception e) {
+            ticketService.deleteTicket(bookingId);
+            System.out.println("Booking cancelled successfully.");
+        } catch (BookingException e) {
             System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
         }
-    }}
+    }
+}

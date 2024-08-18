@@ -146,7 +146,7 @@ public class CustomerDaoImpl implements CustomerDao {
            ppst.setString(5,customer.getPassword());
            int rowAffected = ppst.executeUpdate();
            if (rowAffected>0){
-               System.out.println("Customer added successfully.");
+//               System.out.println("Customer added successfully.");
            }else{
                System.out.println("Unable to add customer!");
            }

@@ -62,7 +62,7 @@ public class CustomerManager {
         try {
             Customer customer = new Customer(id, name, email, phoneNumber, password);
             customerService.addCustomer(customer);
-            System.out.println("Customer added successfully.");
+//            System.out.println("Customer added successfully.");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

@@ -11,6 +11,12 @@ public class Ticket {
 
 //    public Ticket(int reservation_id, int bus_id, int customer_id, LocalDate reservation_date, String status){}
 
+    public Ticket(int busId, int customerId, LocalDate reservationDate, String status) {
+        this.busId = busId;
+        this.customerId = customerId;
+        this.reservationDate = reservationDate;
+        this.status = status;
+    }
     public Ticket(int reservationId, int busId, int customerId, LocalDate reservationDate, String status) {
         this.reservationId = reservationId;
         this.busId = busId;
@@ -18,12 +24,11 @@ public class Ticket {
         this.reservationDate = reservationDate;
         this.status = status;
     }
-
-    public int getreservationId() {
+    public int getReservationId() {
         return reservationId;
     }
 
-    public void setreservationId(int reservationId) {
+    public void setReservationId(int reservationId) {
         this.reservationId = reservationId;
     }
 

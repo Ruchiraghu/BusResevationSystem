@@ -6,6 +6,7 @@ import service.AdminService;
 import service.BusService;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class BusManager {
@@ -19,36 +20,6 @@ public class BusManager {
         this.adminService = adminService;
     }
 
-    private void bookSeats() throws BookingException {
-        System.out.print("Enter bus ID to book seats: ");
-        int busId = sc.nextInt();
-        System.out.print("Enter number of seats to book: ");
-        int numberOfSeats = sc.nextInt();
-        sc.nextLine();
-
-        try {
-            busService.bookSeats(busId, numberOfSeats);
-            System.out.println("Seats booked successfully.");
-        } catch (BookingException | BusNotFoundException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    // Method to handle canceling booking
-    private void cancelBooking() {
-        System.out.print("Enter bus ID to cancel seats: ");
-        int busId = sc.nextInt();
-        System.out.print("Enter number of seats to cancel: ");
-        int numberOfSeats = sc.nextInt();
-        sc.nextLine();
-
-        try {
-            busService.cancelBooking(busId, numberOfSeats);
-            System.out.println("Seats canceled successfully.");
-        } catch (BookingException | BusNotFoundException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
     public void handleBusManagement() throws BusNotFoundException {
         boolean goBackToAdminMenu= true;
         while (goBackToAdminMenu){
@@ -181,4 +152,37 @@ public class BusManager {
             System.out.println("Unexpected error: " + e.getMessage());
         }
     }
+
+    public void displayAvailableBusesByLocationOrRoute() {
+        System.out.print("Enter location or route: ");
+        String locationOrRoute = sc.nextLine().toLowerCase();
+        try {
+            List<Bus> buses = busService.getBusesByLocationOrRoute(locationOrRoute);
+            if (buses.isEmpty()) {
+                System.out.println("No buses found for the specified location/route.");
+                return;
+            }
+            System.out.println("Buses found for location/route: " + locationOrRoute);
+            String format = "%-5s %-20s %-15s %-15s %-20s %-20s %-30s%n";
+            System.out.printf(format, "ID", "Name", "Type", "Available Seats", "Departure Time", "Arrival Time", "Route");
+            System.out.println(new String(new char[130]).replace("\0", "-")); // Line separator
+
+            for (Bus bus : buses) {
+                int availableSeats = busService.calculateAvailableSeats(bus.getBusId());
+                System.out.printf(format,
+                        bus.getBusId(),
+                        bus.getBusName(),
+                        bus.getBusType(),
+                        availableSeats,
+                        bus.getDepartureTime(),
+                        bus.getArrivalTime(),
+                        bus.getRoute()
+                );
+            }
+            System.out.println(new String(new char[130]).replace("\0", "-"));
+        } catch (Exception e) {
+            System.out.println("Error fetching buses: " + e.getMessage());
+        }
+    }
+
 }
