@@ -1,2 +1,11 @@
-package exception;public class CustomerNotFound {
+package exception;
+
+public class CustomerNotFound extends Exception
+{
+    public CustomerNotFound() {
+    }
+
+    public CustomerNotFound(String message) {
+        super(message);
+    }
 }

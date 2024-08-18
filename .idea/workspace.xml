@@ -1,20 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d903a53d-701d-4094-b4f2-9d043340018e" name="Changes" comment="" />
+    <list default="true" id="d903a53d-701d-4094-b4f2-9d043340018e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/menu/AdminMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/menu/CustomerMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusTicketReservation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BusTicketReservation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusManagement/AdminManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusManagement/AdminManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusManagement/BusManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusManagement/BusManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusManagement/CustomerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusManagement/CustomerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BusManagement/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BusManagement/TicketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/BusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/BusDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/CustomerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/TicketDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/TicketDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoImpl/AdminDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoImpl/AdminDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoImpl/BusDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoImpl/BusDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoImpl/CustomerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoImpl/CustomerDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoImpl/TicketDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoImpl/TicketDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/AdminNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/AdminNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/BookingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/BookingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/BusNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/BusNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/CancellationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/CancellationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/CustomerNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/CustomerNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/InvalidLoginException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/InvalidLoginException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exception/InvalidRouteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/InvalidRouteException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Bus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Bus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/BusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/BusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AdminDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AdminDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AdminServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AdminServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/BusDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/BusDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/BusServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/BusServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CustomerDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/CustomerDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/CustomerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/TicketDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TicketDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/TicketServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TicketServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/DateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/EmailUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/EmailUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/PasswordUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/PasswordUtil.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2kSKMCTPRHvV6hleNJv3tw4XtIa" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -22,9 +90,92 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last_opened_file_path": "C:/web development/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="AdminDaoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.AdminDaoTest" />
+      <module name="BusTicketReservation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.App" />
+      <module name="BusTicketReservation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusDaoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.BusDaoTest" />
+      <module name="BusTicketReservation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusServiceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.BusServiceTest" />
+      <module name="BusTicketReservation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="BusTicketReservation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.BusServiceTest" />
+        <item itemvalue="Application.BusDaoTest" />
+        <item itemvalue="Application.AdminDaoTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -35,5 +186,30 @@
       <updated>1723271491401</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="exception.BusNotFoundException" package="exception" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLIntegrityConstraintViolationException" package="java.sql" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
