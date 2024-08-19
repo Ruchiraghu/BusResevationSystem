@@ -1,11 +1,13 @@
 package BusManagement;
 import exception.BookingException;
+import exception.BusNotFoundException;
 import model.Bus;
 import model.Ticket;
 import service.BusService;
 import service.TicketService;
 import utility.DateUtils;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -20,27 +22,6 @@ public class TicketManager {
         this.ticketService = ticketService;
         this.busService = busService;
 
-    }
-
-    public void handleTicketManagement() {
-        System.out.println("Ticket Management:");
-        System.out.println("1. Book Ticket");
-        System.out.println("2. Cancel Ticket");
-        System.out.println("3. Get Ticket By ID");
-        System.out.println("4. Get Tickets By Customer ID");
-        System.out.println("5. Get Tickets By Bus ID");
-        System.out.print("Enter your choice: ");
-        int ticketChoice = sc.nextInt();
-        sc.nextLine();
-
-        switch (ticketChoice) {
-            case 1 -> bookTicket();
-            case 2 -> cancelTicket();
-            case 3 -> getTicketById();
-            case 4 -> getTicketsByCustomerId();
-            case 5 -> getTicketsByBusId();
-            default -> System.out.println("Invalid choice. Please try again!");
-        }
     }
 
     private void displayAvailableBuses() {
@@ -93,13 +74,29 @@ public class TicketManager {
         System.out.println("Enter status: ");
         String status = sc.nextLine();
         try {
+            // Create and add ticket
             Ticket ticket = new Ticket(busId, customerId, reservationDate, status);
             ticketService.addTicket(ticket);
-            System.out.println("Ticket booked successfully with Reservation ID:\n" + ticket.getReservationId() + "\nDate:\n" + ticket.getReservationDate());
+
+            // Update available seats for the bus
+            Bus bus = busService.getBusById(busId);
+            if (bus != null) {
+                int availableSeats = bus.getAvailableSeats();
+                if (availableSeats > 0) {
+                    bus.setAvailableSeats(availableSeats - 1); // Assuming booking 1 seat
+                    busService.updateBus(bus);
+                    System.out.println("Ticket booked successfully with Reservation ID:\n" + ticket.getReservationId() + "\nDate:\n" + ticket.getReservationDate());
+                } else {
+                    System.out.println("No available seats for the selected bus.");
+                }
+            } else {
+                System.out.println("Bus not found.");
+            }
         } catch (Exception e) {
             System.out.println("Error booking ticket: " + e.getMessage());
         }
     }
+
 
     private void cancelTicket() {
         System.out.print("Enter ticket ID to cancel: ");
@@ -180,17 +177,41 @@ public class TicketManager {
     }
 
     public void cancelBooking() {
+        System.out.println("Cancel Booking:");
         System.out.print("Enter booking ID to cancel: ");
         int bookingId = sc.nextInt();
         sc.nextLine(); // Consume newline
 
         try {
-            ticketService.deleteTicket(bookingId);
-            System.out.println("Booking cancelled successfully.");
-        } catch (BookingException e) {
+            // Retrieve the ticket to cancel
+            Ticket ticket = ticketService.getTicketById(bookingId);
+            if (ticket != null) {
+                // Delete the ticket
+                ticketService.deleteTicket(bookingId);
+                System.out.println("Booking canceled successfully.");
+
+                // Retrieve the bus associated with the ticket
+                Bus bus = busService.getBusById(ticket.getBusId());
+                if (bus != null) {
+                    // Update available seats
+                    int currentSeats = bus.getAvailableSeats();
+                    bus.setAvailableSeats(currentSeats + 1); // Increment seats for cancellation
+
+                    // Update the bus with new seat count
+                    busService.updateBus(bus);
+                    System.out.println("Bus seats updated successfully.");
+                } else {
+                    System.out.println("Bus not found.");
+                }
+            } else {
+                System.out.println("Error: Ticket not found.");
+            }
+        } catch (BookingException | BusNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Unexpected error: " + e.getMessage());
         }
     }
+
+
 }

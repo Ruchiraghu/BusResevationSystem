@@ -72,10 +72,10 @@ public class BusManager {
         sc.nextLine();  // Consume newline
 
         System.out.print("Enter admin username: ");
-        String username = sc.nextLine();
+        String username = sc.nextLine().trim();
 
         System.out.print("Enter admin password for authentication: ");
-        String password = sc.nextLine();
+        String password = sc.nextLine().trim();
 
         try {
             // Authenticate admin using username and password
@@ -130,9 +130,9 @@ public class BusManager {
         int busId = sc.nextInt();
         sc.nextLine();
         System.out.println("Enter new bus name: ");
-        String busName = sc.nextLine();
+        String busName = sc.nextLine().trim().toLowerCase();
         System.out.println("Enter new bus type: ");
-        String busType = sc.nextLine();
+        String busType = sc.nextLine().trim().toLowerCase();
         System.out.println("Enter new available seats: ");
         int availableSeats = sc.nextInt();
         sc.nextLine();

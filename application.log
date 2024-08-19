@@ -27,3 +27,9 @@
 2024-08-16 13:16:00 - Error adding bus: Duplicate entry '12' for key 'buses.PRIMARY'
 2024-08-17 20:39:31 - Bus with Id 12 not found.
 2024-08-17 21:09:42 - Error deleting bus with id 1: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 11:57:17 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 11:58:41 - Error deleting bus with id 156: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 11:59:39 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 12:00:19 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 12:00:54 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 12:09:21 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))

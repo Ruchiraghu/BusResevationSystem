@@ -85,28 +85,22 @@ public List<Bus> getAvailableBuses() {
     public void bookSeats(int busId, int numberOfSeats) throws BookingException, BusNotFoundException {
         Bus bus = getById(busId);
         int availableSeats = bus.getAvailableSeats();
-        System.out.println("Current available seats: " + availableSeats);
 
         if (availableSeats >= numberOfSeats) {
-            bus.setAvailableSeats(availableSeats - numberOfSeats);
-            System.out.println("New available seats: " + bus.getAvailableSeats());
-            updateBus(bus);
+            int newAvailableSeats = availableSeats - numberOfSeats;
+            updateAvailableSeats(busId, newAvailableSeats); // Use updateAvailableSeats
         } else {
             throw new BookingException("Not enough seats available.");
         }
     }
 
-
     public void cancelBooking(int busId, int numberOfSeats) throws BookingException, BusNotFoundException {
-        Bus bus = getById(busId); // Fetch the bus using the ID
+        Bus bus = getById(busId);
         int availableSeats = bus.getAvailableSeats();
 
-        // Increase the number of available seats
-        bus.setAvailableSeats(availableSeats + numberOfSeats);
-        updateBus(bus); // Save the updated bus details
+        int newAvailableSeats = availableSeats + numberOfSeats;
+        updateAvailableSeats(busId, newAvailableSeats); // Use updateAvailableSeats
     }
-
-
 
 
     public int calculateAvailableSeats(int busId) {
@@ -141,5 +135,13 @@ public List<Bus> getAvailableBuses() {
         }
     }
 
+
+    public Bus getBusById(int busId) throws BusNotFoundException {
+        return busDao.getBusById(busId);
+    }
+
+    public void updateAvailableSeats(int busId, int seats) throws BusNotFoundException {
+        busDao.updateAvailableSeats(busId, seats);
+    }
 
 }
