@@ -19,7 +19,7 @@ public class CustomerMenu {
         this.ticketManager = ticketManager;
         this.busManager = busManager;
     }
-
+//handle customer menu
     public void handleCustomerMenu() {
         boolean userLoggedIn = false;
 
