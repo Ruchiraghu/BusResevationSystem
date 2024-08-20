@@ -33,3 +33,4 @@
 2024-08-19 12:00:19 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
 2024-08-19 12:00:54 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
 2024-08-19 12:09:21 - Error deleting bus with id 15: Cannot delete or update a parent row: a foreign key constraint fails (`bus_reservation_system`.`reservations`, CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`bus_id`) REFERENCES `buses` (`bus_id`))
+2024-08-19 17:49:51 - Error adding bus: Data truncation: Incorrect time value: '08-00-00' for column 'departure_time' at row 1
